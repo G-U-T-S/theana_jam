@@ -1,44 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://wsp10vf61bd2"]
+[gd_scene load_steps=6 format=3 uid="uid://wsp10vf61bd2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_bb2fb"]
 [ext_resource type="PackedScene" uid="uid://caxa8h1vq18p7" path="res://Scenes/shape_spawn.tscn" id="2_mwrq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ne8"]
-size = Vector2(50, 562)
+size = Vector2(50, 1013.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usv82"]
+size = Vector2(50, 1002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylhhn"]
+size = Vector2(50, 550)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bb2fb")
 
 [node name="wall_1" type="StaticBody2D" parent="."]
+position = Vector2(150, 240)
 
 [node name="polygon" type="Polygon2D" parent="wall_1"]
-position = Vector2(15, -19)
+position = Vector2(-125, -250)
 polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
 
 [node name="collsion" type="CollisionShape2D" parent="wall_1"]
-position = Vector2(140, 231)
+position = Vector2(-3.05176e-05, -256.25)
 shape = SubResource("RectangleShape2D_x5ne8")
 
 [node name="wall_2" type="StaticBody2D" parent="."]
-position = Vector2(527, -19)
+position = Vector2(650, 240)
 
 [node name="polygon" type="Polygon2D" parent="wall_2"]
+position = Vector2(-125, -250)
 polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
 
-[node name="collsion" type="CollisionShape2D" parent="wall_2"]
-position = Vector2(125, 250)
-shape = SubResource("RectangleShape2D_x5ne8")
+[node name="collision" type="CollisionShape2D" parent="wall_2"]
+position = Vector2(0, -251)
+shape = SubResource("RectangleShape2D_usv82")
 
 [node name="wall_3" type="StaticBody2D" parent="."]
-position = Vector2(615, 381)
-rotation = 1.5708
+position = Vector2(374, 515)
 
 [node name="polygon" type="Polygon2D" parent="wall_3"]
-polygon = PackedVector2Array(100, -62, 150, -62, 150, 500, 100, 500)
+position = Vector2(251, -125)
+rotation = 1.5708
+polygon = PackedVector2Array(100, -49.9999, 150, -49.9999, 150, 500, 100, 500)
 
-[node name="collsion" type="CollisionShape2D" parent="wall_3"]
-position = Vector2(125, 219)
-shape = SubResource("RectangleShape2D_x5ne8")
+[node name="collision" type="CollisionShape2D" parent="wall_3"]
+position = Vector2(26, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ylhhn")
 
 [node name="shape_spawn" parent="." instance=ExtResource("2_mwrq7")]
+unique_name_in_owner = true
 position = Vector2(385, -140)
