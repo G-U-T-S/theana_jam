@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://05g5im37gchh"]
+[gd_scene load_steps=3 format=3 uid="uid://05g5im37gchh"]
 
 [ext_resource type="Script" path="res://Scripts/pentagon_shape.gd" id="1_umoc4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2t8gb"]
+radius = 26.0
 
 [node name="pentagon_shape" type="RigidBody2D"]
 script = ExtResource("1_umoc4")
@@ -9,5 +12,6 @@ script = ExtResource("1_umoc4")
 position = Vector2(0, -2)
 polygon = PackedVector2Array(0, -28, -30, -3, -15, 28, 16, 28, 30, -3)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -30, -30, -5, -15, 26, 16, 26, 30, -5)
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_2t8gb")
