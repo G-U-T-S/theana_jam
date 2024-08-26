@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://05g5im37gchh"]
+
+[ext_resource type="Script" path="res://Scripts/pentagon_shape.gd" id="1_umoc4"]
+
+[node name="pentagon_shape" type="RigidBody2D"]
+script = ExtResource("1_umoc4")
+
+[node name="polygon" type="Polygon2D" parent="."]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(0, -28, -30, -3, -15, 28, 16, 28, 30, -3)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -30, -30, -5, -15, 26, 16, 26, 30, -5)

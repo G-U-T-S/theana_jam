@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbu8qewk1hprq"]
+
+[ext_resource type="Script" path="res://Scripts/square.gd" id="1_vcdq5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_sxf76"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxpvh"]
+size = Vector2(50, 50)
+
+[node name="square_shape" type="RigidBody2D"]
+script = ExtResource("1_vcdq5")
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_sxf76")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vxpvh")

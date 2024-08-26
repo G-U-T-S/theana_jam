@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://wsp10vf61bd2"]
+[gd_scene load_steps=4 format=3 uid="uid://wsp10vf61bd2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_bb2fb"]
+[ext_resource type="PackedScene" uid="uid://caxa8h1vq18p7" path="res://Scenes/shape_spawn.tscn" id="2_mwrq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ne8"]
+size = Vector2(50, 562)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bb2fb")
+
+[node name="wall_1" type="StaticBody2D" parent="."]
+
+[node name="polygon" type="Polygon2D" parent="wall_1"]
+position = Vector2(15, -19)
+polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
+
+[node name="collsion" type="CollisionShape2D" parent="wall_1"]
+position = Vector2(140, 231)
+shape = SubResource("RectangleShape2D_x5ne8")
+
+[node name="wall_2" type="StaticBody2D" parent="."]
+position = Vector2(527, -19)
+
+[node name="polygon" type="Polygon2D" parent="wall_2"]
+polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
+
+[node name="collsion" type="CollisionShape2D" parent="wall_2"]
+position = Vector2(125, 250)
+shape = SubResource("RectangleShape2D_x5ne8")
+
+[node name="wall_3" type="StaticBody2D" parent="."]
+position = Vector2(615, 381)
+rotation = 1.5708
+
+[node name="polygon" type="Polygon2D" parent="wall_3"]
+polygon = PackedVector2Array(100, -62, 150, -62, 150, 500, 100, 500)
+
+[node name="collsion" type="CollisionShape2D" parent="wall_3"]
+position = Vector2(125, 219)
+shape = SubResource("RectangleShape2D_x5ne8")
+
+[node name="shape_spawn" parent="." instance=ExtResource("2_mwrq7")]
+position = Vector2(385, -140)

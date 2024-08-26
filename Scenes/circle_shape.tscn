@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpr0xh6sbfkuh"]
+
+[ext_resource type="Script" path="res://Scripts/circle_shape.gd" id="1_0hsxx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_awgk8"]
+radius = 30.0
+height = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4w11q"]
+radius = 30.0167
+
+[node name="circle_shape" type="RigidBody2D"]
+script = ExtResource("1_0hsxx")
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_awgk8")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4w11q")

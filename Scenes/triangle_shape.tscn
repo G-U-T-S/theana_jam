@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8d8dhv6pw8ul"]
+
+[ext_resource type="Script" path="res://Scripts/triangle_shape.gd" id="1_1lgki"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_48cqo"]
+size = Vector3(50, 60, 1)
+
+[node name="triangle_shape" type="RigidBody2D"]
+script = ExtResource("1_1lgki")
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+position = Vector2(0, -3.5)
+scale = Vector2(1, -1)
+mesh = SubResource("PrismMesh_48cqo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -4)
+polygon = PackedVector2Array(0, -29, -25, 31, 25, 31)
