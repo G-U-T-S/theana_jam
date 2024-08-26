@@ -6,7 +6,7 @@ class_name ShapeSpawn extends Node2D
 var SHAPES: Dictionary = {
 	"circle": load("res://Scenes/circle_shape.tscn"),
 	"triangle": load("res://Scenes/triangle_shape.tscn"),
-	"square": load("res://Scenes/square.tscn"),
+	"square": load("res://Scenes/square_shape.tscn"),
 	"pentagon": load("res://Scenes/pentagon_shape.tscn")
 }
 
