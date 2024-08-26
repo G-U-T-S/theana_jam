@@ -10,11 +10,6 @@ var SHAPES: Dictionary = {
 	"pentagon": load("res://Scenes/pentagon_shape.tscn")
 }
 
-func _input(event: InputEvent) -> void:
-	# ALERT DEBUG ALERT
-	if event.is_action("ui_accept"):
-		spawn()
-
 
 func spawn() -> void:
 	var new_shape: BaseShape = SHAPES[SHAPES.keys().pick_random()].instantiate()
