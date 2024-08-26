@@ -10,6 +10,8 @@ radius = 15.0
 height = 60.0
 
 [node name="triangle_shape" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_1lgki")
 
 [node name="mesh" type="MeshInstance2D" parent="."]

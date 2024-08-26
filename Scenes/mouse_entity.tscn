@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3pduo0ucbtfo"]
+
+[ext_resource type="Script" path="res://Scripts/mouse_entity.gd" id="1_ujm1k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ntdm"]
+size = Vector2(10, 10)
+
+[node name="mouse_entity" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ujm1k")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7ntdm")

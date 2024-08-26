@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://wsp10vf61bd2"]
+[gd_scene load_steps=7 format=3 uid="uid://wsp10vf61bd2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_bb2fb"]
 [ext_resource type="PackedScene" uid="uid://caxa8h1vq18p7" path="res://Scenes/shape_spawn.tscn" id="2_mwrq7"]
+[ext_resource type="PackedScene" uid="uid://d3pduo0ucbtfo" path="res://Scenes/mouse_entity.tscn" id="3_sxctf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ne8"]
 size = Vector2(50, 1013.5)
@@ -53,3 +54,6 @@ shape = SubResource("RectangleShape2D_ylhhn")
 [node name="shape_spawn" parent="." instance=ExtResource("2_mwrq7")]
 unique_name_in_owner = true
 position = Vector2(385, -140)
+
+[node name="mouse_entity" parent="." instance=ExtResource("3_sxctf")]
+unique_name_in_owner = true
