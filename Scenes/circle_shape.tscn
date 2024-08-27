@@ -10,9 +10,11 @@ height = 60.0
 radius = 30.0167
 
 [node name="circle_shape" type="RigidBody2D"]
+modulate = Color(0.6356, 0.128072, 0.704168, 1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_0hsxx")
+type = "circle"
 
 [node name="mesh" type="MeshInstance2D" parent="."]
 mesh = SubResource("SphereMesh_awgk8")

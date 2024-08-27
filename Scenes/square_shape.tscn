@@ -9,9 +9,11 @@ size = Vector2(50, 50)
 radius = 27.0185
 
 [node name="square_shape" type="RigidBody2D"]
+modulate = Color(0.382046, 0.202682, 0.102359, 1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_vcdq5")
+type = "square"
 
 [node name="mesh" type="MeshInstance2D" parent="."]
 mesh = SubResource("QuadMesh_sxf76")

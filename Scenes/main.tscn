@@ -20,7 +20,8 @@ script = ExtResource("1_bb2fb")
 position = Vector2(150, 240)
 
 [node name="polygon" type="Polygon2D" parent="wall_1"]
-position = Vector2(-125, -250)
+position = Vector2(-113, -250)
+scale = Vector2(0.88, 1.022)
 polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
 
 [node name="collsion" type="CollisionShape2D" parent="wall_1"]
@@ -31,7 +32,8 @@ shape = SubResource("RectangleShape2D_x5ne8")
 position = Vector2(650, 240)
 
 [node name="polygon" type="Polygon2D" parent="wall_2"]
-position = Vector2(-125, -250)
+position = Vector2(-104, -250)
+scale = Vector2(0.86, 1.032)
 polygon = PackedVector2Array(100, 0, 150, 0, 150, 500, 100, 500)
 
 [node name="collision" type="CollisionShape2D" parent="wall_2"]
@@ -42,8 +44,9 @@ shape = SubResource("RectangleShape2D_usv82")
 position = Vector2(374, 515)
 
 [node name="polygon" type="Polygon2D" parent="wall_3"]
-position = Vector2(251, -125)
+position = Vector2(251, -100.264)
 rotation = 1.5708
+scale = Vector2(0.835095, 1)
 polygon = PackedVector2Array(100, -49.9999, 150, -49.9999, 150, 500, 100, 500)
 
 [node name="collision" type="CollisionShape2D" parent="wall_3"]
