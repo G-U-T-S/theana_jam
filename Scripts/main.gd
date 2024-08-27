@@ -6,6 +6,7 @@ extends Node2D
 var min_shapes_quantity: int = 80
 var current_selected_shapes: Array[BaseShape] = []
 var current_shape_type: String = ""
+var min_combo: int = 3
 
 # essa variavel serve para limitar a distancia
 # entre a ultima forma selecionada e a proxima
@@ -32,6 +33,7 @@ func check_valid_shape(new_shape: BaseShape) -> void:
 	# essa funçao testa se a "shape"
 	# ja nao esta na lista
 	if current_selected_shapes.size() <= 0:
+		new_shape.inflate()
 		current_selected_shapes.append(new_shape)
 		current_shape_type = new_shape.type
 		return
@@ -45,6 +47,7 @@ func check_valid_shape(new_shape: BaseShape) -> void:
 		if current_shape_type == new_shape.type\
 		and is_shape_distance_valid(new_shape, max_detect_distance):
 			
+			new_shape.inflate()
 			current_selected_shapes.append(new_shape)
 
 
@@ -66,8 +69,13 @@ func _input(event: InputEvent) -> void:
 	
 	elif event.is_action_released("mouse_left"):
 		is_selecting = false
+		
 		# TEMP
 		for shape in current_selected_shapes:
-			shape.queue_free()
+			if current_selected_shapes.size() >= min_combo:
+				shape.queue_free()
+			else:
+				shape.deflate()
+
 		current_selected_shapes.clear()
 		current_shape_type = ""
