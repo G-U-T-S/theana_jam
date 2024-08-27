@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbu8qewk1hprq"]
 
 [ext_resource type="Script" path="res://Scripts/square.gd" id="1_vcdq5"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_sxf76"]
-size = Vector2(50, 50)
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_0alla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0cnj"]
 radius = 27.0185
 
 [node name="square_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
-modulate = Color(0.382046, 0.202682, 0.102359, 1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_vcdq5")
 type = "square"
-texture = NodePath("mesh")
+texture = NodePath("sprite")
 
-[node name="mesh" type="MeshInstance2D" parent="."]
-mesh = SubResource("QuadMesh_sxf76")
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_0alla")
+region_enabled = true
+region_rect = Rect2(262, 42, 80, 83)
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_a0cnj")

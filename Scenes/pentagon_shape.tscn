@@ -1,21 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://05g5im37gchh"]
+[gd_scene load_steps=4 format=3 uid="uid://05g5im37gchh"]
 
 [ext_resource type="Script" path="res://Scripts/pentagon_shape.gd" id="1_umoc4"]
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_aqroq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2t8gb"]
 radius = 26.0
 
 [node name="pentagon_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
-modulate = Color(0.158137, 0.466152, 0.431672, 1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_umoc4")
 type = "pentagon"
-texture = NodePath("polygon")
+texture = NodePath("sprite")
 
-[node name="polygon" type="Polygon2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
-polygon = PackedVector2Array(0, -28, -30, -3, -15, 28, 16, 28, 30, -3)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_aqroq")
+region_enabled = true
+region_rect = Rect2(380, 31, 96, 92)
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

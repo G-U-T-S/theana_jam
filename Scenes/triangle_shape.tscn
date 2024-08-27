@@ -1,27 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8d8dhv6pw8ul"]
 
 [ext_resource type="Script" path="res://Scripts/triangle_shape.gd" id="1_1lgki"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_48cqo"]
-size = Vector3(50, 60, 1)
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_vmlm2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuypl"]
-radius = 15.0
-height = 60.0
+radius = 18.0
+height = 50.0
 
 [node name="triangle_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_1lgki")
 type = "triangle"
-texture = NodePath("mesh")
+texture = NodePath("sprite")
 
-[node name="mesh" type="MeshInstance2D" parent="."]
-modulate = Color(0.172648, 0.169612, 0.3356, 1)
-position = Vector2(0, -3.5)
-rotation = 3.14159
-mesh = SubResource("PrismMesh_48cqo")
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_vmlm2")
+region_enabled = true
+region_rect = Rect2(147, 36, 88, 90)
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_vuypl")
