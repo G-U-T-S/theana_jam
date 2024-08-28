@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://wsp10vf61bd2"]
+[gd_scene load_steps=11 format=3 uid="uid://wsp10vf61bd2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_bb2fb"]
+[ext_resource type="Script" path="res://Scripts/gamemanager.gd" id="2_dp651"]
+[ext_resource type="PackedScene" uid="uid://dg2mqdarr2vl8" path="res://Scenes/pause_menu.tscn" id="2_hpedm"]
 [ext_resource type="PackedScene" uid="uid://caxa8h1vq18p7" path="res://Scenes/shape_spawn.tscn" id="2_mwrq7"]
 [ext_resource type="PackedScene" uid="uid://d3pduo0ucbtfo" path="res://Scenes/mouse_entity.tscn" id="3_sxctf"]
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="4_fpjcm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntec3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ne8"]
 size = Vector2(50, 1013.5)
@@ -15,6 +20,60 @@ size = Vector2(50, 550)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bb2fb")
+
+[node name="Gamemanager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("2_dp651")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Gamemanager"]
+process_mode = 3
+
+[node name="pause" parent="Gamemanager/CanvasLayer" instance=ExtResource("2_hpedm")]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource("4_fpjcm")
+
+[node name="Panel" type="Panel" parent="Gamemanager/CanvasLayer/pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gamemanager/CanvasLayer/pause/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -20.0
+offset_right = 91.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="resume" type="Button" parent="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer"]
+layout_mode = 2
+text = "resume"
+
+[node name="quit" type="Button" parent="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer"]
+layout_mode = 2
+text = "quit"
+
+[node name="scorelabel" type="Label" parent="Gamemanager/CanvasLayer"]
+offset_left = 690.0
+offset_top = 31.0
+offset_right = 779.0
+offset_bottom = 73.0
+text = "score=000"
+label_settings = SubResource("LabelSettings_ntec3")
 
 [node name="wall_1" type="StaticBody2D" parent="."]
 position = Vector2(150, 240)
@@ -60,3 +119,6 @@ position = Vector2(385, -140)
 
 [node name="mouse_entity" parent="." instance=ExtResource("3_sxctf")]
 unique_name_in_owner = true
+
+[connection signal="pressed" from="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer/resume" to="Gamemanager/CanvasLayer/pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer/quit" to="Gamemanager/CanvasLayer/pause" method="_on_quit_pressed"]

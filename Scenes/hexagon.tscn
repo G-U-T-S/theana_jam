@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtob388vdlp8d"]
+
+[ext_resource type="Script" path="res://Scripts/triangle_shape.gd" id="1_wvd4s"]
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_1k43e"]
+
+[node name="hexagon_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_wvd4s")
+type = "triangle"
+texture = NodePath("sprite")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_1k43e")
+region_enabled = true
+region_rect = Rect2(25, 160, 100, 103)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2, -21)
+scale = Vector2(1.625, 0.695652)
+polygon = PackedVector2Array(-0.615385, -21.5625, 16, -4.3125, 16, 37.375, 0, 60.375, -16.6154, 40.25, -16.6154, -1.4375)

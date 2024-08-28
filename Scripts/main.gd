@@ -2,8 +2,11 @@ extends Node2D
 
 @onready var shape_spawn: ShapeSpawn = %shape_spawn
 @onready var mouse_entity: MouseEntity = %mouse_entity
+@onready var scorelabel: Label = $Gamemanager/CanvasLayer/scorelabel
 
-var min_shapes_quantity: int = 80
+@onready var score: int =0
+#diminui o numero minimo de shapes por que eles estavão entrando um no outro graças a uns ajustes de colisão que fiz
+var min_shapes_quantity: int = 76
 var current_selected_shapes: Array[BaseShape] = []
 var current_shape_type: String = ""
 var min_combo: int = 3
@@ -19,7 +22,9 @@ var is_selecting: bool = false
 
 # BUG acho que e problema da godot, a fisica so atualiza
 # quando ha o primeiro contato entre as formas BUG
-
+func _ready() -> void:
+	Input.mouse_mode=Input.MOUSE_MODE_CONFINED
+	
 
 func _process(_delta: float) -> void:
 	if shape_spawn.get_child_count() < min_shapes_quantity:
@@ -74,8 +79,15 @@ func _input(event: InputEvent) -> void:
 		for shape in current_selected_shapes:
 			if current_selected_shapes.size() >= min_combo:
 				shape.queue_free()
+				score +=50
+				print(score)
+				add_score()
 			else:
 				shape.deflate()
 
 		current_selected_shapes.clear()
 		current_shape_type = ""
+func add_score():
+	pass
+	scorelabel.text= "score: %d" %score 
+	# o %d é um formato de especificação para os valores Int

@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8d8dhv6pw8ul"]
+[gd_scene load_steps=3 format=3 uid="uid://b8d8dhv6pw8ul"]
 
 [ext_resource type="Script" path="res://Scripts/triangle_shape.gd" id="1_1lgki"]
 [ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_vmlm2"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuypl"]
-radius = 18.0
-height = 50.0
 
 [node name="triangle_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
 collision_layer = 2
@@ -21,6 +17,7 @@ texture = ExtResource("2_vmlm2")
 region_enabled = true
 region_rect = Rect2(147, 36, 88, 90)
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_vuypl")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, -5)
+scale = Vector2(3.62964, 3.05625)
+polygon = PackedVector2Array(-0.275509, -7.85276, 6.06121, 7.52556, -6.61223, 7.52556)

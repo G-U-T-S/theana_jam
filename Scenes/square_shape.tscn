@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/square.gd" id="1_vcdq5"]
 [ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_0alla"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a0cnj"]
-radius = 27.0185
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6uv1"]
+size = Vector2(44, 46)
 
 [node name="square_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
 collision_layer = 2
@@ -20,4 +20,4 @@ region_enabled = true
 region_rect = Rect2(262, 42, 80, 83)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_a0cnj")
+shape = SubResource("RectangleShape2D_o6uv1")
