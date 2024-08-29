@@ -8,9 +8,9 @@ var SHAPES: Dictionary = {
 	"triangle": load("res://Scenes/triangle_shape.tscn"),
 	"square": load("res://Scenes/square_shape.tscn"),
 	"pentagon": load("res://Scenes/pentagon_shape.tscn"), 
-	"hexagon": load("res://Scenes/hexagon.tscn"),
-	"heptágono": load("res://Scenes/heptágono.tscn"),
-	"octógono": load("res://Scenes/octógono.tscn")
+	"hexagon": load("res://Scenes/hexagon_shape.tscn"),
+	"heptagon": load("res://Scenes/heptagon_shape.tscn"),
+	"octagon": load("res://Scenes/octagon_shape.tscn")
 }
 
 

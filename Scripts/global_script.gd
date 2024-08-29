@@ -1,3 +1,3 @@
 extends Node
 
-# nao usade
+var current_player_score: int = 0

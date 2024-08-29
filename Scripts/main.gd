@@ -2,14 +2,20 @@ extends Node2D
 
 @onready var shape_spawn: ShapeSpawn = %shape_spawn
 @onready var mouse_entity: MouseEntity = %mouse_entity
-@onready var scorelabel: Label = $Gamemanager/CanvasLayer/scorelabel
+@onready var bg: Parallax2D = %bg
+@onready var custom_camera: CustomCamera = %custom_camera
+@onready var custom_score_label: CustomScoreLabel = %custom_score_label
+@onready var custom_timer: CustomTimer = %custom_timer
+@onready var pop_sound: AudioStreamPlayer = %pop_sound
 
-@onready var score: int =0
-#diminui o numero minimo de shapes por que eles estavão entrando um no outro graças a uns ajustes de colisão que fiz
-var min_shapes_quantity: int = 76
+var min_shapes_quantity: int = 100
 var current_selected_shapes: Array[BaseShape] = []
 var current_shape_type: String = ""
 var min_combo: int = 3
+
+# variavel para monitorar quantas
+# shapes o player destruiu
+var total_killed_shapes: int = 0
 
 # essa variavel serve para limitar a distancia
 # entre a ultima forma selecionada e a proxima
@@ -22,11 +28,18 @@ var is_selecting: bool = false
 
 # BUG acho que e problema da godot, a fisica so atualiza
 # quando ha o primeiro contato entre as formas BUG
+
 func _ready() -> void:
-	Input.mouse_mode=Input.MOUSE_MODE_CONFINED
+	custom_timer.init_timer(30)
+	custom_timer.timer.timeout.connect(finish_game)
 	
 
 func _process(_delta: float) -> void:
+	# movimenta o background, dividido por um
+	# numero tao grande para a velocidade ser baixa
+	bg.scroll_offset.x += sin(Time.get_ticks_msec() / 10000.0)
+	#bg.scroll_offset.y -= sin(Time.get_ticks_msec() / 10000.0)
+	
 	if shape_spawn.get_child_count() < min_shapes_quantity:
 		shape_spawn.spawn()
 	
@@ -68,26 +81,43 @@ func is_shape_distance_valid(new_shape:BaseShape, max_distance: float) -> bool:
 	return false
 
 
+func clear_shapes() -> void:
+	if current_selected_shapes.size() >= min_combo:
+		total_killed_shapes += current_selected_shapes.size()
+		
+		custom_camera.start_shake(
+			current_selected_shapes.size() * 1.3, 0.25
+		)
+		
+		custom_score_label.add_score(
+			current_selected_shapes.size() * 15
+		)
+		
+		custom_timer.add_time(
+			current_selected_shapes.size() * 0.5, 60.0
+		)
+		
+		pop_sound.pitch_scale = randf_range(0.7, 1.3)
+		pop_sound.play()
+
+	for shape in current_selected_shapes:
+		if current_selected_shapes.size() >= min_combo:
+			shape.die()
+		else:
+			shape.deflate()
+
+	current_selected_shapes.clear()
+	current_shape_type = ""
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		is_selecting = true
 	
 	elif event.is_action_released("mouse_left"):
 		is_selecting = false
-		
-		# TEMP
-		for shape in current_selected_shapes:
-			if current_selected_shapes.size() >= min_combo:
-				shape.queue_free()
-				score +=50
-				print(score)
-				add_score()
-			else:
-				shape.deflate()
+		clear_shapes()
 
-		current_selected_shapes.clear()
-		current_shape_type = ""
-func add_score():
-	pass
-	scorelabel.text= "score: %d" %score 
-	# o %d é um formato de especificação para os valores Int
+
+func finish_game() -> void:
+	total_killed_shapes = 0
