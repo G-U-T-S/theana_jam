@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="398.781" y1="69.141" x2="398.781" y2="139.908" id="color-0-1" gradientTransform="matrix(1.25557, 0, 0, 1.278936, -105.378296, -34.426012)" xlink:href="#color-0"/>
+    <linearGradient id="color-0" bx:pinned="true">
+      <stop style="stop-color: #1e9600;" offset="0"/>
+      <stop style="stop-color: #fff200;" offset="0.346"/>
+      <stop style="stop-color: #ff0000;" offset="1"/>
+    </linearGradient>
+  </defs>
+  <ellipse style="fill: rgb(72, 72, 72); stroke-width: 4px; stroke: rgb(24, 24, 24);" cx="95.07" cy="103.78" rx="37.267" ry="37.234" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 1.4210854715202004e-14)"/>
+  <image width="512" height="32" x="-3.954" y="467.646" transform="matrix(0.9765630364418031, 0, 0, 1.0000000000000002, 3.861328050589975, 0.35403402957550156)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAAgCAYAAABkS8DlAAAA5klEQVR4Ae3BMU1EURQFwMNV8ENF+XsMUBIqSkpKJGCEBAmrhKwC8qSsA5DxijMzd69P73/ZaJ1Htjqz1fF4ZqePr0t2Oh+y1fFyZKffn5Wd7s8jO53PZ3b6XrfstG5ndrq8fWan6/WandZa2WmtlZ0mAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1JkAAHUmAECdCQBQZwIA1PkHJooVh4LS/VoAAAAASUVORK5CYII=">
+    <title>8-minutes-past-8-32x</title>
+  </image>
+  <path style="fill: none; stroke: rgb(24, 24, 24); stroke-width: 5px;" d="M 97.499 64.732 C 95.314 71.869 95.46 65.312 108.181 42.95 L 121.501 35.285" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 1.4210854715202004e-14)"/>
+  <path style="stroke-width: 4px; stroke: rgb(24, 24, 24); fill: rgb(134, 72, 8); transform-origin: 242.745px 99.034px;" d="M 224.921 92.663 L 240.209 87.124 C 237.195 81.698 211.463 43.136 210.502 43.977 L 197.78 50.318 C 193.224 52.632 222.47 87.647 224.921 92.663 Z"/>
+  <path style="stroke-width: 4px; stroke: rgb(24, 24, 24); fill: rgb(184, 184, 184); transform-origin: 241.564px 96.798px;" d="M 214.15 95.659 C 210.355 98.819 259.134 147.203 261.391 145.325 L 286.997 151.867 C 286.546 149.764 255.942 89.577 250.265 82.106 L 214.15 95.659 Z"/>
+  <ellipse style="fill: rgb(184, 184, 184); stroke: rgb(24, 24, 24);" cx="225.513" cy="79.678" rx="4.392" ry="3.743" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 1.4210854715202004e-14)"/>
+  <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(184, 184, 184);" cx="212.494" cy="61.363" rx="4.392" ry="3.743" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 1.4210854715202004e-14)"/>
+  <path d="M 395.319 54.001 L 409.425 84.603 L 442.87 88.571 L 418.143 111.452 L 424.707 144.506 L 395.319 128.045 L 365.931 144.506 L 372.495 111.452 L 347.768 88.571 L 381.213 84.603 Z" style="stroke: rgb(24, 24, 24); stroke-width: 4px; paint-order: fill; fill-rule: nonzero; fill: url('#color-0-1');" transform="matrix(1.0000000000000002, 0, 0, 1.0000000000000002, 0, 1.4210854715202004e-14)" bx:shape="star 395.319 104.031 49.998 50.03 0.48 5 1@498a2cb3"/>
+</svg>
