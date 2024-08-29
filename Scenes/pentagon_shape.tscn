@@ -1,22 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://05g5im37gchh"]
+[gd_scene load_steps=7 format=3 uid="uid://05g5im37gchh"]
 
 [ext_resource type="Script" path="res://Scripts/pentagon_shape.gd" id="1_umoc4"]
-[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_aqroq"]
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://Images/shape_atlas.svg" id="2_aqroq"]
 
-[node name="pentagon_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xu6lx"]
+radius = 26.0192
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_na8f1"]
+load_path = "res://.godot/imported/shape_atlas.svg-cc2196b2a3a400b2872301dea3bce439.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr7sl"]
+atlas = SubResource("CompressedTexture2D_na8f1")
+region = Rect2(380, 31, 96, 92)
+
+[sub_resource type="Curve" id="Curve_ngwuj"]
+_data = [Vector2(0, 0.546568), 0.0, 0.0, 0, 0, Vector2(0.506813, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="pentagon_shape" type="RigidBody2D" node_paths=PackedStringArray("texture", "particle")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_umoc4")
 type = "pentagon"
 texture = NodePath("sprite")
+particle = NodePath("die_particle")
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_aqroq")
 region_enabled = true
 region_rect = Rect2(380, 31, 96, 92)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2.80666, 3.23882)
-polygon = PackedVector2Array(0, -8.33638, 9.26369, -2.47004, 5.70073, 7.10136, -5.70073, 7.10136, -9.26369, -2.47004)
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_xu6lx")
+
+[node name="die_particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = SubResource("AtlasTexture_qr7sl")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_ngwuj")

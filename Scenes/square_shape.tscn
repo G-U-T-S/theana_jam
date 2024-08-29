@@ -1,17 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbu8qewk1hprq"]
+[gd_scene load_steps=6 format=3 uid="uid://bbu8qewk1hprq"]
 
 [ext_resource type="Script" path="res://Scripts/square.gd" id="1_vcdq5"]
-[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://shape_atlas.svg" id="2_0alla"]
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://Images/shape_atlas.svg" id="2_0alla"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6uv1"]
-size = Vector2(44, 46)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw37m"]
+radius = 26.0768
 
-[node name="square_shape" type="RigidBody2D" node_paths=PackedStringArray("texture")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtejr"]
+atlas = ExtResource("2_0alla")
+region = Rect2(262, 42, 80, 83)
+
+[sub_resource type="Curve" id="Curve_bn23u"]
+_data = [Vector2(0, 0.546568), 0.0, 0.0, 0, 0, Vector2(0.506813, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="square_shape" type="RigidBody2D" node_paths=PackedStringArray("texture", "particle")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_vcdq5")
 type = "square"
 texture = NodePath("sprite")
+particle = NodePath("die_particle")
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
@@ -20,4 +29,21 @@ region_enabled = true
 region_rect = Rect2(262, 42, 80, 83)
 
 [node name="collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_o6uv1")
+shape = SubResource("CircleShape2D_vw37m")
+
+[node name="die_particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = SubResource("AtlasTexture_xtejr")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_bn23u")

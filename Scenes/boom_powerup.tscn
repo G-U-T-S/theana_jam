@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvs5dry1l5tt1"]
+
+[ext_resource type="Script" path="res://Scripts/boom_powerup.gd" id="1_0ovg1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_24h51"]
+size = Vector2(50, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_latxr"]
+radius = 172.003
+
+[node name="boom_powerup" type="Node2D"]
+script = ExtResource("1_0ovg1")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_24h51")
+
+[node name="explosion_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 2
+
+[node name="collision" type="CollisionShape2D" parent="explosion_area"]
+shape = SubResource("CircleShape2D_latxr")

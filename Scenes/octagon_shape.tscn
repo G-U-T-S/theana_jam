@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3067uon04nut"]
+
+[ext_resource type="Script" path="res://Scripts/octagon_shape.gd" id="1_skplo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gsu3w"]
+load_path = "res://.godot/imported/shape_atlas.svg-cc2196b2a3a400b2872301dea3bce439.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4tvd"]
+radius = 28.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2k67d"]
+load_path = "res://.godot/imported/shape_atlas.svg-cc2196b2a3a400b2872301dea3bce439.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iuqu"]
+atlas = SubResource("CompressedTexture2D_2k67d")
+region = Rect2(270, 160, 105, 102)
+
+[sub_resource type="Curve" id="Curve_626ax"]
+_data = [Vector2(0, 0.546568), 0.0, 0.0, 0, 0, Vector2(0.506813, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="octagon_shape" type="RigidBody2D" node_paths=PackedStringArray("texture", "particle")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_skplo")
+type = "octagon"
+texture = NodePath("sprite")
+particle = NodePath("die_particle")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = SubResource("CompressedTexture2D_gsu3w")
+region_enabled = true
+region_rect = Rect2(270, 160, 105, 103)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r4tvd")
+
+[node name="die_particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = SubResource("AtlasTexture_6iuqu")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_626ax")

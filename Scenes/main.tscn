@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://wsp10vf61bd2"]
+[gd_scene load_steps=12 format=3 uid="uid://wsp10vf61bd2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_bb2fb"]
-[ext_resource type="Script" path="res://Scripts/gamemanager.gd" id="2_dp651"]
-[ext_resource type="PackedScene" uid="uid://dg2mqdarr2vl8" path="res://Scenes/pause_menu.tscn" id="2_hpedm"]
+[ext_resource type="Texture2D" uid="uid://b3ec2q61dn4ch" path="res://Images/background.png" id="2_1p55m"]
+[ext_resource type="AudioStream" uid="uid://com80g80dhvip" path="res://Sounds/pop.mp3" id="2_4q1xu"]
 [ext_resource type="PackedScene" uid="uid://caxa8h1vq18p7" path="res://Scenes/shape_spawn.tscn" id="2_mwrq7"]
 [ext_resource type="PackedScene" uid="uid://d3pduo0ucbtfo" path="res://Scenes/mouse_entity.tscn" id="3_sxctf"]
-[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="4_fpjcm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ntec3"]
+[ext_resource type="PackedScene" uid="uid://cohxj6spp1u2x" path="res://Scenes/custom_camera.tscn" id="5_v0w6e"]
+[ext_resource type="PackedScene" uid="uid://c110rupqx0gqa" path="res://Scenes/custom_score_label.tscn" id="6_42rod"]
+[ext_resource type="PackedScene" uid="uid://cb56cnv2m0kpb" path="res://Scenes/custom_timer.tscn" id="7_td8gg"]
+[ext_resource type="PackedScene" uid="uid://c8j2y36ye6vfl" path="res://Scenes/powerups_tab.tscn" id="8_j2bp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ne8"]
 size = Vector2(50, 1013.5)
@@ -15,65 +16,25 @@ size = Vector2(50, 1013.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usv82"]
 size = Vector2(50, 1002)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylhhn"]
-size = Vector2(50, 550)
-
 [node name="main" type="Node2D"]
 script = ExtResource("1_bb2fb")
 
-[node name="Gamemanager" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("2_dp651")
+[node name="sounds" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Gamemanager"]
-process_mode = 3
+[node name="pop_sound" type="AudioStreamPlayer" parent="sounds"]
+unique_name_in_owner = true
+stream = ExtResource("2_4q1xu")
+volume_db = 2.0
 
-[node name="pause" parent="Gamemanager/CanvasLayer" instance=ExtResource("2_hpedm")]
-process_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-script = ExtResource("4_fpjcm")
+[node name="bg" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+repeat_size = Vector2(307.2, 307.2)
+repeat_times = 5
 
-[node name="Panel" type="Panel" parent="Gamemanager/CanvasLayer/pause"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Gamemanager/CanvasLayer/pause/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -91.5
-offset_top = -20.0
-offset_right = 91.5
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="resume" type="Button" parent="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer"]
-layout_mode = 2
-text = "resume"
-
-[node name="quit" type="Button" parent="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer"]
-layout_mode = 2
-text = "quit"
-
-[node name="scorelabel" type="Label" parent="Gamemanager/CanvasLayer"]
-offset_left = 690.0
-offset_top = 31.0
-offset_right = 779.0
-offset_bottom = 73.0
-text = "score=000"
-label_settings = SubResource("LabelSettings_ntec3")
+[node name="sprite" type="Sprite2D" parent="bg"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_1p55m")
+centered = false
 
 [node name="wall_1" type="StaticBody2D" parent="."]
 position = Vector2(150, 240)
@@ -105,13 +66,10 @@ position = Vector2(374, 515)
 [node name="polygon" type="Polygon2D" parent="wall_3"]
 position = Vector2(251, -100.264)
 rotation = 1.5708
-scale = Vector2(0.835095, 1)
-polygon = PackedVector2Array(100, -49.9999, 150, -49.9999, 150, 500, 100, 500)
+polygon = PackedVector2Array(91.2638, -50.0003, 123.264, -35.0004, 152.264, 13.9995, 169.265, 149.999, 173.265, 226.999, 169.265, 319.999, 147.266, 429, 113.266, 485, 86.2658, 500, 86.2657, 456, 104.265, 412, 128.265, 333, 141.265, 227, 134.264, 134, 114.264, 36.9996, 91.264, -7.00031)
 
-[node name="collision" type="CollisionShape2D" parent="wall_3"]
-position = Vector2(26, 0)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_ylhhn")
+[node name="collision" type="CollisionPolygon2D" parent="wall_3"]
+polygon = PackedVector2Array(-205, -14, -161, 5, -82, 28, 23, 41, 116, 34, 214, 14, 258, -9, 258, -23, 301, -23, 288, 22, 183, 61, 24, 74, -125, 58, -234, 14, -249, -14)
 
 [node name="shape_spawn" parent="." instance=ExtResource("2_mwrq7")]
 unique_name_in_owner = true
@@ -120,5 +78,39 @@ position = Vector2(385, -140)
 [node name="mouse_entity" parent="." instance=ExtResource("3_sxctf")]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer/resume" to="Gamemanager/CanvasLayer/pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="Gamemanager/CanvasLayer/pause/Panel/VBoxContainer/quit" to="Gamemanager/CanvasLayer/pause" method="_on_quit_pressed"]
+[node name="custom_camera" parent="." instance=ExtResource("5_v0w6e")]
+unique_name_in_owner = true
+position = Vector2(400, 300)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="h_cont" type="HBoxContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.0
+offset_top = 35.0
+offset_right = 96.0
+offset_bottom = 90.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="custom_score_label" parent="HUD/h_cont" instance=ExtResource("6_42rod")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="custom_timer" parent="HUD" instance=ExtResource("7_td8gg")]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_right = 75.5
+offset_bottom = 55.0
+grow_horizontal = 2
+
+[node name="powerups_tab" parent="HUD" node_paths=PackedStringArray("custom_camera", "score_label") instance=ExtResource("8_j2bp8")]
+custom_camera = NodePath("../../custom_camera")
+score_label = NodePath("../h_cont/custom_score_label")

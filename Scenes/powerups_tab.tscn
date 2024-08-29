@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8j2y36ye6vfl"]
+
+[ext_resource type="Script" path="res://Scripts/powerups_tab.gd" id="1_7p8ek"]
+[ext_resource type="Texture2D" uid="uid://dmmeser0eprlx" path="res://Images/shape_atlas.svg" id="2_uv1ye"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sny4"]
+atlas = ExtResource("2_uv1ye")
+region = Rect2(262, 42, 80, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruf6p"]
+atlas = ExtResource("2_uv1ye")
+region = Rect2(270, 160, 105, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7do81"]
+atlas = ExtResource("2_uv1ye")
+region = Rect2(28, 157, 98, 106)
+
+[node name="powerups_tab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -693.0
+offset_bottom = -297.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7p8ek")
+
+[node name="panel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="v_cont" type="VBoxContainer" parent="panel"]
+layout_mode = 2
+
+[node name="bomb_button" type="TextureButton" parent="panel/v_cont"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_4sny4")
+
+[node name="TextureButton2" type="TextureButton" parent="panel/v_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_ruf6p")
+
+[node name="TextureButton3" type="TextureButton" parent="panel/v_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_7do81")
+
+[connection signal="pressed" from="panel/v_cont/bomb_button" to="." method="_on_bomb_button_pressed"]
