@@ -114,3 +114,32 @@ grow_horizontal = 2
 [node name="powerups_tab" parent="HUD" node_paths=PackedStringArray("custom_camera", "score_label") instance=ExtResource("8_j2bp8")]
 custom_camera = NodePath("../../custom_camera")
 score_label = NodePath("../h_cont/custom_score_label")
+
+[node name="quit_button" type="Button" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 80.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "QUIT"
+
+[node name="end_dialogue" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "YOU DIE"
+initial_position = 2
+size = Vector2i(222, 100)
+unresizable = true
+always_on_top = true
+popup_window = true
+extend_to_title = true
+ok_button_text = "RESTART"
+dialog_text = "YOU WANT TO TRY AGAIN?"
+dialog_close_on_escape = false
+cancel_button_text = "QUIT"
+
+[connection signal="pressed" from="HUD/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="canceled" from="end_dialogue" to="." method="_on_end_dialogue_canceled"]
+[connection signal="confirmed" from="end_dialogue" to="." method="_on_end_dialogue_confirmed"]

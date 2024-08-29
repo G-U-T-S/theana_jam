@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvs5dry1l5tt1"]
+[gd_scene load_steps=5 format=3 uid="uid://dvs5dry1l5tt1"]
 
 [ext_resource type="Script" path="res://Scripts/boom_powerup.gd" id="1_0ovg1"]
+[ext_resource type="Texture2D" uid="uid://r76byqgc2hy4" path="res://Images/powerup_atlas.svg" id="2_6uhap"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_24h51"]
-size = Vector2(50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_utejs"]
+atlas = ExtResource("2_6uhap")
+region = Rect2(55, 33, 80, 110)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_latxr"]
 radius = 172.003
@@ -11,8 +13,24 @@ radius = 172.003
 [node name="boom_powerup" type="Node2D"]
 script = ExtResource("1_0ovg1")
 
+[node name="particles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, -52)
+amount = 10
+lifetime = 0.3
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(0.833933, 0.207878, 0.189276, 1)
+
 [node name="sprite" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_24h51")
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_utejs")
 
 [node name="explosion_area" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -21,3 +39,21 @@ collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="explosion_area"]
 shape = SubResource("CircleShape2D_latxr")
+
+[node name="explosive_particles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 50
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 7.0
+scale_amount_max = 10.0
+color = Color(0.242304, 0.242304, 0.242304, 1)
