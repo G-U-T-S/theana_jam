@@ -7,15 +7,12 @@ extends Node2D
 @onready var custom_score_label: CustomScoreLabel = %custom_score_label
 @onready var custom_timer: CustomTimer = %custom_timer
 @onready var pop_sound: AudioStreamPlayer = %pop_sound
+@onready var end_dialogue: ConfirmationDialog = %end_dialogue
 
 var min_shapes_quantity: int = 100
 var current_selected_shapes: Array[BaseShape] = []
 var current_shape_type: String = ""
 var min_combo: int = 3
-
-# variavel para monitorar quantas
-# shapes o player destruiu
-var total_killed_shapes: int = 0
 
 # essa variavel serve para limitar a distancia
 # entre a ultima forma selecionada e a proxima
@@ -28,6 +25,7 @@ var is_selecting: bool = false
 
 # BUG acho que e problema da godot, a fisica so atualiza
 # quando ha o primeiro contato entre as formas BUG
+
 
 func _ready() -> void:
 	custom_timer.init_timer(30)
@@ -83,7 +81,7 @@ func is_shape_distance_valid(new_shape:BaseShape, max_distance: float) -> bool:
 
 func clear_shapes() -> void:
 	if current_selected_shapes.size() >= min_combo:
-		total_killed_shapes += current_selected_shapes.size()
+		GlobalScript.total_kiled_shapes += current_selected_shapes.size()
 		
 		custom_camera.start_shake(
 			current_selected_shapes.size() * 1.3, 0.25
@@ -97,7 +95,7 @@ func clear_shapes() -> void:
 			current_selected_shapes.size() * 0.5, 60.0
 		)
 		
-		pop_sound.pitch_scale = randf_range(0.7, 1.3)
+		pop_sound.pitch_scale = randf_range(0.6, 1.4)
 		pop_sound.play()
 
 	for shape in current_selected_shapes:
@@ -120,4 +118,26 @@ func _input(event: InputEvent) -> void:
 
 
 func finish_game() -> void:
-	total_killed_shapes = 0
+	end_dialogue.popup()
+
+
+func _on_quit_button_pressed() -> void:
+	GlobalScript.total_kiled_shapes = 0
+	GlobalScript.current_player_score = 0
+	current_selected_shapes.clear()
+
+	get_tree().change_scene_to_file(
+		GlobalScript.title_screen_path
+	)
+
+
+func _on_end_dialogue_canceled() -> void:
+	GlobalScript.total_kiled_shapes = 0
+	GlobalScript.current_player_score = 0
+	current_selected_shapes.clear()
+	
+	get_tree().change_scene_to_file(GlobalScript.title_screen_path)
+
+
+func _on_end_dialogue_confirmed() -> void:
+	get_tree().reload_current_scene()
